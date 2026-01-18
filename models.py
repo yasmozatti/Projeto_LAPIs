@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, String, Integer, Boolean, Float, ForeignKey
-from sqlalchemy import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy_utils.types import ChoiceType
 
 #criar a conexão com seu banco
@@ -32,17 +32,17 @@ class Usuario(Base):
 class Pedido(Base):
     __tablename__ = "pedidos"
 
-    STATUS_PEDIDOS = (
-        ("PENDENTE", "PENDENTE"),
-        ("CANCELADO", "CANCELADO")
-        ("FINALIZADO", "FINALIZADO")
-    )
+    # STATUS_PEDIDOS = (
+    #     ("PENDENTE", "PENDENTE"),
+    #     ("CANCELADO", "CANCELADO"),
+    #     ("FINALIZADO", "FINALIZADO")
+    # )
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
-    status = Column("status", ChoiceType(choices=STATUS_PEDIDOS), default="PENDENTE")
+    status = Column("status", String)
     usuario = Column("usuario", ForeignKey("usuarios.id"))
     preco = Column("preco", Float)
-    itens =
+    #itens =
 
     def __init__(self, usuario, status="PENDENTE", preco=0):
         self.usuario = usuario
@@ -64,7 +64,7 @@ class ItemPedido(Base):
         self.quantidade = quantidade
         self.sabor = sabor
         self.tamanho = tamanho
-        self.preco_unitario = unitario
+        self.preco_unitario = preco_unitario
         self.pedido = pedido
 
 #executa a criação dos metadados do seu banco (cria efetivamente o bd)

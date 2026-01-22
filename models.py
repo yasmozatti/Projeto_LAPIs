@@ -16,7 +16,7 @@ class Usuario(Base):
     nome = Column("nome", String)
     email = Column("email", String, nullable=False)
     senha = Column("senha", String, nullable=False)
-    telefone = Column("telefone", Integer)
+    telefone = Column("telefone", String)
     ativo = Column("ativo", Boolean, default=True)
     admin = Column("admin", Boolean, default=False)
 
@@ -24,6 +24,7 @@ class Usuario(Base):
         self.nome = nome
         self.email = email
         self.senha = senha
+        self.telefone = telefone
         self.ativo = ativo
         self.admin = admin
 
